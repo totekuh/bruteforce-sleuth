@@ -5,7 +5,6 @@ def geo_lookup():
 
     print('Enter IP address:')
     ip = input('> ')
-    # ip = '94.181.183.160'
     URL = f'http://api.geoiplookup.net/?query={ip}'
 
     geo_response = requests.get(URL)
