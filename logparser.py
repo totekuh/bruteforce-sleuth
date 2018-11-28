@@ -1,6 +1,5 @@
 import re
 
-
 def extract_ip_list(lines_to_skip=2):
     ip_list = []
     with open('log', 'r', encoding='utf-8') as f:
