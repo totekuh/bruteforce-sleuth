@@ -1,19 +1,22 @@
 def save(dict):
-    results = open('results', 'a', encoding='utf-8')
+    # with open('results', 'a', encoding='utf-8') as f:
+        # results = do_whatever()
 
     for key, value in dict.items():
         print(f'{key}: {value}')
 
-def geo_lookup():
+def geo_lookup(ip=None):
     import requests
     import xml.etree.ElementTree as ET
 
 
-    print('Enter IP address:')
-    ip = input('> ')
-    URL = f'http://api.geoiplookup.net/?query={ip}'
+    #   if using manual input:
+    #
+    # print('Enter IP address:')
+    # ip = input('> ')
+    url = f'http://api.geoiplookup.net/?query={ip}'
 
-    response = requests.get(URL)
+    response = requests.get(url)
 
     if response.status_code == 200:
         root = ET.fromstring(response.text)
@@ -24,8 +27,7 @@ def geo_lookup():
             geo_result[child.tag.title()] = child.text
             # print(f'{child.tag.title()}: {child.text}')
         save(geo_result)
+        return geo_result['Latitude'], geo_result['Longitude']
     else:
         print('Server returned not OK response, exiting.')
-        exit(1)
-
-geo_lookup()
+        return
