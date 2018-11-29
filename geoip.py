@@ -30,7 +30,7 @@ def geo_lookup(ip=None):
             # save(geo_result)
             return float(geo_result['Latitude']), float(geo_result['Longitude'])
         else:
-            print('Server returned not OK response, exiting.')
+            print('Server returned not OK response, skipping.')
             return
     except:
         return
