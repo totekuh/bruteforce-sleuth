@@ -1,6 +1,7 @@
 import re
 
-def extract_ip_list(lines_to_skip=2):
+
+def extract_ip_list():
     ip_list = []
     with open('log', 'r', encoding='utf-8') as f:
         for log in list(f):
@@ -10,6 +11,6 @@ def extract_ip_list(lines_to_skip=2):
             except Exception as e:
                 None
 
-    return ip_list
+    return set(ip_list)
 
 print(extract_ip_list())

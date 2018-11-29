@@ -1,6 +1,5 @@
 import geoip, logparser
 import folium
-import pandas as pd
 
 # Make an empty map
 m = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
