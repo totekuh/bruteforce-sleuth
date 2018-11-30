@@ -1,4 +1,4 @@
-import geoip, logparser
+import geoip, log_parser
 import folium
 import logging
 
@@ -8,7 +8,7 @@ logging.basicConfig(level=logging.INFO)
 m = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
 
 
-ip_list = logparser.extract_ip_list()
+ip_list = log_parser.extract_ip_list()
 for ip in ip_list:
     try:
         lat, lon = geoip.geo_lookup(ip)
