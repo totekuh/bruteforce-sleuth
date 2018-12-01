@@ -1,20 +1,20 @@
-import geoip, log_parser
+import log_parser
 import folium
 import logging
+from collections import Counter
 
 
-logging.basicConfig(level=logging.INFO)
-# Make an empty map
-m = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+class Map:
+    def __init__(self):
+        disconnections = log_parser.parse()
+        locations = [(float(d.geo['Latitude']), float(d.geo['Longitude'])) for d in disconnections]
+        self.markers = Counter(locations)
+
+        self.map = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+        for loc in self.markers:
+            popup = f'Unique IPs: {self.markers[loc]}'
+            folium.Marker(loc, popup=popup).add_to(self.map)
+        self.map.save('map.html')
 
 
-ip_list = log_parser.extract_ip_list()
-for ip in ip_list:
-    try:
-        lat, lon = geoip.geo_lookup(ip)
-        print(lat, lon)
-        folium.Marker([lat, lon]).add_to(m)
-    except:
-        print(f'cannot handle {ip}')
-
-m.save('map.html')
+m = Map()
