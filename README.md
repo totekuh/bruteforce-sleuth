@@ -1,5 +1,8 @@
 # geo-ip-lookup
 <br>A Linux tool that can be used to parse the system logs and identify your pottential attackers until their ISP (<i>Internet Service Provider</i>).
+
+<br>Required: Python 3.7.*, pip, pip requests folium, any web-server to share the result page.
+<br>
 <br>Extract the system log with IP addresses (e.g. it can be your ssh-server log: /var/log/auth.log)
 <br>Run the start.sh script and get the longitude and latitude of all IP's from the log.
 <br><img src="https://i.imgur.com/vLrkrgI.jpg"/>
