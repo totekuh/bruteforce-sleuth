@@ -1,5 +1,5 @@
 # geo-ip-lookup
-<br>A Linux tool that can be used to parse the system logs and identify your pottential attackers until their ISP (<i>Internet Service Provider</i>).
+<br>A Linux tool that can be used to analyze the system logs for the recorded IP addresses and identify geolocation of your pottential attackers.
 
 <br>Required: Python 3.7.*; pip, pip requests folium; any web-server to share the result page.
 <br>
