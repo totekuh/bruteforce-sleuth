@@ -21,4 +21,8 @@ echo 'Removing log file.'
 
 rm log
 
+webpagepath='/var/www/html/map.html'
+echo 'Moving generated map to the specified location:' $webpagepath
+
+mv ./map.html $webpagepath
 echo 'Done.'
