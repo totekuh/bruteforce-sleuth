@@ -7,8 +7,6 @@ then
   exit
 fi
 
-logpath='/var/log/auth.log'
-
 echo 'Receiving list of available logs...'
 
 ls /var/log/*.log | grep ^ | grep "/var/log/"
@@ -27,19 +25,26 @@ cp $logpath ./log
 echo '======================================'
 
 echo 'Done. Parsing the log...'
-python3  map.py
+python3 log_parser.py
+
+echo 'Done. Generating the map...'
+python3 map.py
 
 echo '======================================'
 
 echo 'Done. You can now access coordinates via the program output and/or generated map.html'
-echo 'Removing log file.'
+echo 'Removing log file...'
 
 rm log
 
-webpagepath='/var/www/html/map.html'
-echo 'Moving generated map to the specified location:' $webpagepath
+mappagepath='/var/www/html/map.html'
+mapclusteredpagepath='/var/www/html/map-clustered.html'
+
+echo 'Moving generated map to the specified location:' $mappagepath
+echo 'Moving generated clustered map to the specified location:'$mapclusteredpagepath
 
 echo '======================================'
 
-mv ./map.html $webpagepath
+mv ./map.html $mappagepath
+mv ./map-clustered.html $mapclusteredpagepath
 echo 'Done.'
