@@ -27,7 +27,8 @@ echo '======================================'
 echo 'Done. Parsing the log...'
 python3 log_parser.py
 
-echo 'Done. Generating the map...
+echo 'Done. Generating the map...'
+python3 map.py
 
 echo '======================================'
 
