@@ -1,5 +1,6 @@
 import csv
 import folium
+from collections import Counter
 
 
 class Mapper:
@@ -11,7 +12,9 @@ class Mapper:
             self.data = self.load_csv()
         elif self.map_type == 'map-clustered':
             self.marking_method = folium.CircleMarker
-            self.data = self.load_csv()
+            self.data = Counter()
+            for d in self.load_csv():
+                loc = d
             # add counting
         self.name = f'{self.map_type}.html'
         print(self.data)
