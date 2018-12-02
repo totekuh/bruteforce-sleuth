@@ -21,12 +21,8 @@ def search(ip):
     host = api.host(ip)
 
     print('\n===========================================\n')
-    print(f'IP: {host["ip_str"]}')
-    print(f'Organization: {host.get("org", "n/a")}')
-    print(f'Operationg System: {host.get("os", "n/a")}')
 
-    for item in host['data']:
-        print(f'Port: {item["port"]}')
-        print(f'Banner:\n----\n{item["data"]}' + '\n-----\n')
+    for key, value in host.items():
+        print(f'{key}: {value}')
 
     print('\n===========================================\n')
