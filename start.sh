@@ -7,8 +7,6 @@ then
   exit
 fi
 
-logpath='/var/log/auth.log'
-
 echo 'Receiving list of available logs...'
 
 ls /var/log/*.log | grep ^ | grep "/var/log/"
@@ -27,12 +25,14 @@ cp $logpath ./log
 echo '======================================'
 
 echo 'Done. Parsing the log...'
-python3  map.py
+python3 log_parser.py
+
+echo 'Done. Generating the map...
 
 echo '======================================'
 
 echo 'Done. You can now access coordinates via the program output and/or generated map.html'
-echo 'Removing log file.'
+echo 'Removing log file...'
 
 rm log
 
