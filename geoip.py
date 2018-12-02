@@ -1,4 +1,3 @@
-import logging
 import requests
 import xml.etree.ElementTree as ET
 
@@ -17,8 +16,8 @@ def geo_lookup(ip):
                 # ISSUE with receiving '&' character literally (and probably others) in lookup response. Encoding?
             return geo_result
         else:
-            logging.warning('Server returned not OK response, skipping.')
+            print('Server returned not OK response, skipping.')
             return None
     except Exception as e:
-        logging.warning(f'Something went wrong during {ip} lookup: {e}')
+        print(f'Something went wrong during {ip} lookup: {e}')
         return None

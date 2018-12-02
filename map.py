@@ -1,20 +1,23 @@
 import log_parser
 import folium
-import logging
-from collections import Counter
+from folium.plugins import MarkerCluster
 
 
-class Map:
-    def __init__(self):
-        disconnections = log_parser.parse()
-        locations = [(float(d.geo['Latitude']), float(d.geo['Longitude'])) for d in disconnections]
-        self.markers = Counter(locations)
+def create_map():
+    disconnections = log_parser.parse()
 
-        self.map = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
-        for loc in self.markers:
-            popup = f'Unique IPs: {self.markers[loc]}'
-            folium.Marker(loc, popup=popup).add_to(self.map)
-        self.map.save('map.html')
+    try:
+        world = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+        mc = MarkerCluster()
+        for d in disconnections:
+            p = folium.Popup(f"{d.geo['Isp']} {d.geo['Ip']} {d.geo['City']}, {d.geo['Countrycode']}")
+            folium.Marker((float(d.geo['Latitude']), float(d.geo['Longitude'])),
+                          popup=p).add_to(mc)
+        world.add_child(mc)
+        world.save('map.html')
+        print('map.html successfully created')
+    except Exception as e:
+        print(f'Error creating map: {e}')
 
 
-m = Map()
+create_map()

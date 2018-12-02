@@ -1,9 +1,6 @@
-from collections import Counter
 import geoip
-import logging
 import re
 
-#logging.basicConfig(level=logging.INFO)
 rgx = r'(?<=Received disconnect from )(?P<ip>.\S*).*: (?P<response>.*)(?= \[preauth)'
 
 
@@ -13,7 +10,7 @@ class DisconnectionLog:
         self.ip = ip
         self.response = response
         self.geo = geoip.geo_lookup(self.ip)
-        logging.info(f"New disconnection {self.ip} from {self.geo}: {self.response}")
+        print(f"New disconnection {self.ip} from {self.geo}: {self.response}")
 
 
 def parse():
@@ -28,6 +25,5 @@ def parse():
                 if dlog.geo is not None:
                     disconnections.append(dlog)
             except AttributeError:
-                logging.debug(f'Not interested in line: {log}')
                 pass
     return disconnections
