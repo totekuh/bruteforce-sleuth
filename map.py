@@ -12,10 +12,10 @@ class Mapper:
             self.data = self.load_csv()
         elif self.map_type == 'map-clustered':
             self.marking_method = folium.CircleMarker
-            self.data = Counter()
-            for d in self.load_csv():
-                loc = d
+            locations = [(float(d['Latitude']), float(d['Longitude'])) for d in self.load_csv()]
+            self.data = Counter(locations)
             # add counting
+
         self.name = f'{self.map_type}.html'
         print(self.data)
 
@@ -27,10 +27,19 @@ class Mapper:
     def generate(self):
         try:
             world = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+            marking_args = {}
+
             for d in self.data:
-                popup = folium.Popup(f"{d['Isp']} {d['Ip']} {d['City']}, {d['Countrycode']}")
-                location = float(d['Latitude']), float(d['Longitude'])
-                self.marking_method(location, popup=popup).add_to(world)
+                if self.map_type == 'map':
+                    marking_args['location'] = float(d['Latitude']), float(d['Longitude'])
+                    marking_args['popup'] = folium.Popup(f"{d['Isp']} {d['Ip']} {d['City']}, {d['Countrycode']}")
+                elif self.map_type == 'map-clustered':
+                    marking_args['location'] = d
+                    marking_args['radius'] = self.data[d] / 2
+                    marking_args['popup'] = folium.Popup(f'Attempts: {self.data[d]}')
+
+                self.marking_method(**marking_args).add_to(world)
+
             world.save(self.name)
             print(f'{self.name} successfully created')
         except Exception as e:
