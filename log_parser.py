@@ -27,7 +27,7 @@ def parse():
                 d = Disconnection(log, ip, response)
                 if d.geo is not None:
                     disconnections.append(d)
-                    print(f"New disconnection {self.ip} from {self.geo}: {self.response}")
+                    print(f"New disconnection {d.ip} from {d.geo}: {d.response}")
             except AttributeError:
                 pass
 

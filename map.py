@@ -17,7 +17,6 @@ class Mapper:
             # add counting
 
         self.name = f'{self.map_type}.html'
-        print(self.data)
 
     def load_csv(self):
         with open('disconnections.csv', 'r', newline='') as csv_file:
