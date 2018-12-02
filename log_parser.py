@@ -7,13 +7,12 @@ log_path = 'log'
 csv_path = 'disconnections.csv'
 
 
-class DisconnectionLog:
+class Disconnection:
     def __init__(self, log, ip, response):
         self.raw = log
         self.ip = ip
         self.response = response
         self.geo = geoip.geo_lookup(self.ip)
-        print(f"New disconnection {self.ip} from {self.geo}: {self.response}")
 
 
 def parse():
@@ -25,9 +24,10 @@ def parse():
                 m = re.search(rgx, log)
                 ip = m.group('ip')
                 response = m.group('response')
-                d = DisconnectionLog(log, ip, response)
+                d = Disconnection(log, ip, response)
                 if d.geo is not None:
                     disconnections.append(d)
+                    print(f"New disconnection {d.ip} from {d.geo}: {d.response}")
             except AttributeError:
                 pass
 
