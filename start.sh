@@ -37,10 +37,14 @@ echo 'Removing log file...'
 
 rm log
 
-webpagepath='/var/www/html/map.html'
-echo 'Moving generated map to the specified location:' $webpagepath
+mappagepath='/var/www/html/map.html'
+mapclusteredpagepath='/var/www/html/map-clustered.html'
+
+echo 'Moving generated map to the specified location:' $mappagepath
+echo 'Moving generated clustered map to the specified location:'$mapclusteredpagepath
 
 echo '======================================'
 
-mv ./map.html $webpagepath
+mv ./map.html $mappagepath
+mv ./map-clustered.html $mapclusteredpagepath
 echo 'Done.'
