@@ -6,6 +6,7 @@ rgx = r'(?<=Received disconnect from )(?P<ip>.\S*).*: (?P<response>.*)(?= \[prea
 log_path = 'log'
 csv_path = 'disconnections.csv'
 
+
 class DisconnectionLog:
     def __init__(self, log, ip, response):
         self.raw = log
@@ -29,12 +30,13 @@ def parse():
             except AttributeError:
                 pass
 
-    with open(csv_path, 'w', newline='') as csvfile:
+    with open(csv_path, 'w', newline='') as csv_file:
         fieldnames = ['Ip', 'Host', 'Isp', 'City', 'Countrycode', 'Countryname', 'Latitude', 'Longitude']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows([d.geo for d in disconnections])
         print(f'Saved {len(disconnections)} log events as {csv_path}')
     return disconnections
+
 
 parse()
