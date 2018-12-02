@@ -1,20 +1,23 @@
-import geoip, logparser
+import log_parser
 import folium
-import logging
+from folium.plugins import MarkerCluster
 
 
-logging.basicConfig(level=logging.INFO)
-# Make an empty map
-m = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+def create_map():
+    disconnections = log_parser.parse()
 
-
-ip_list = logparser.extract_ip_list()
-for ip in ip_list:
     try:
-        lat, lon = geoip.geo_lookup(ip)
-        print(lat, lon)
-        folium.Marker([lat, lon]).add_to(m)
-    except:
-        print(f'cannot handle {ip}')
+        world = folium.Map(location=[20, 0], tiles="Mapbox Bright", zoom_start=2)
+        mc = MarkerCluster()
+        for d in disconnections:
+            p = folium.Popup(f"{d.geo['Isp']} {d.geo['Ip']} {d.geo['City']}, {d.geo['Countrycode']}")
+            folium.Marker((float(d.geo['Latitude']), float(d.geo['Longitude'])),
+                          popup=p).add_to(mc)
+        world.add_child(mc)
+        world.save('map.html')
+        print('map.html successfully created')
+    except Exception as e:
+        print(f'Error creating map: {e}')
 
-m.save('map.html')
+
+create_map()
