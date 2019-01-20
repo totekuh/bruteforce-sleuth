@@ -16,5 +16,6 @@ Use this tool to track your attackers until their Internet Service Provider.
 <br>Track with details every failed attemp to bruteforce your server.
 <br><img src="https://i.imgur.com/p943AEL.jpg"/>
 <br/>Generated results will be placed at /var/www/html/map.html and /var/www/html/map-clustered.html
+<br/>
 <br/>If you are under real pressure - you can use clustered map at http://0.0.0.0/map-clustered.html Clustered map will show your the regions with the most annoying activity.
-<br/><img src="https://imgur.com/a/i3zyAzZ.jpg"/>
+<br/><img src="https://imgur.com/BLuHKHP.jpg"/>
