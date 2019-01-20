@@ -7,11 +7,13 @@
 <br>
 <br>Extract a system log with IP addresses (e.g. it can be your ssh-server log: /var/log/auth.log)
 <br>Run start.sh as root to get the longitude and latitude of all disconnected IPs from the log.
-<br><img src="https://i.imgur.com/vLrkrgI.jpg"/>
+<br><img src="https://imgur.com/LLdtLA9.jpg"/>
 <br>You will see the list of coordinates with map.html generated:
-<br><img src="https://i.imgur.com/etcs9RV.jpg"/>
-<br>Open the interactive map.
-<br><img src="https://i.imgur.com/Xf4rWSD.jpg"/>
-<br>Track every failed attemp to bruteforce your server.
+<br><img src="https://imgur.com/UwepPdi.jpg"/>
+<br>Run any web server (i.e. apache2) and open the interactive map at http://0.0.0.0/map.html.
+<br><img src="https://imgur.com/vg6ZtrL.jpg"/>
+<br>Track with details every failed attemp to bruteforce your server.
 <br><img src="https://i.imgur.com/p943AEL.jpg"/>
 <br/>Generated results will be placed at /var/www/html/map.html and /var/www/html/map-clustered.html
+<br/>If you are under real pressure - you can use clustered map at http://0.0.0.0/map-clustered.html Clustered map will show your the regions with the most annoying activity.
+<br/><img src="https://imgur.com/a/i3zyAzZ.jpg"/>
