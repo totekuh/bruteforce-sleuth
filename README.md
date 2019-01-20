@@ -1,6 +1,8 @@
 # bruteforce-sleuth
 <br>A Linux tool that can be used to analyze and locate failed preauth attempts found in system logs, thus potentially identifying security threats.
 
+<br/> bruteforce-sleuth is fully capable with ssh-bruteforcing trails. Use /var/log/auth.log (or you can provide any log file that you want)
+
 <br>Requirements: Python 3.7.*; pip, pip requests folium; any web-server to share the results page.
 <br>
 <br>Extract a system log with IP addresses (e.g. it can be your ssh-server log: /var/log/auth.log)
