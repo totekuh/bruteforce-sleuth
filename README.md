@@ -10,5 +10,5 @@
 <br><img src="https://i.imgur.com/etcs9RV.jpg"/>
 <br>Open the interactive map.
 <br><img src="https://i.imgur.com/Xf4rWSD.jpg"/>
-<br>Track every failed attemp to connect to your server.
+<br>Track every failed attemp to bruteforce your server.
 <br><img src="https://i.imgur.com/p943AEL.jpg"/>
