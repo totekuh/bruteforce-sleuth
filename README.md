@@ -1,4 +1,4 @@
-# geo-ip-lookup
+# bruteforce-sleuth
 <br>A Linux tool that can be used to analyze and locate failed preauth attempts found in system logs, thus potentially identifying security threats.
 
 <br>Requirements: Python 3.7.*; pip, pip requests folium; any web-server to share the results page.
