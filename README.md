@@ -12,3 +12,4 @@
 <br><img src="https://i.imgur.com/Xf4rWSD.jpg"/>
 <br>Track every failed attemp to bruteforce your server.
 <br><img src="https://i.imgur.com/p943AEL.jpg"/>
+<br/>Generated results will be placed at /var/www/html/map.html and /var/www/html/map-clustered.html
